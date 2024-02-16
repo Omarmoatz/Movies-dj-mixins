@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # my apps
-    'meal',
+    'meals',
 
     # 3rd part apps
     'rest_framework',

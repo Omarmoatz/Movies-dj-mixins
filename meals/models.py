@@ -15,6 +15,10 @@ class Meal(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def get_avg_time(self):
+        return self.price 
 
 class Category(models.Model):
     name = models.CharField( max_length=100, default='default_ctg')

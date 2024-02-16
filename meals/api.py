@@ -7,12 +7,13 @@ from .serializers import MealSerializer
 class MealMixinAPI(mixins.ListModelMixin,
                    mixins.RetrieveModelMixin,
                    mixins.CreateModelMixin,
+                   mixins.DestroyModelMixin,
                    generics.GenericAPIView):
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
 
     def get(self, request, *args, **kwargs):
-        pk = kwargs['pk']
+        pk = kwargs.get('pk')
         if pk is not None:
             return self.retrieve(request,*args, **kwargs)
         return self.list(request,*args, **kwargs)
@@ -28,4 +29,7 @@ class MealMixinAPI(mixins.ListModelMixin,
             description = "test perform create"
 
         serializer.save(description=description)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
         

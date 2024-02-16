@@ -5,4 +5,5 @@ class MealSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
     class Meta:
         model = Meal
-        fields = '__all__'
+        fields = ['id','name','description','price','category',
+                  'preperation_time','image','people','price_after_sale']

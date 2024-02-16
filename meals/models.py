@@ -18,8 +18,9 @@ class Meal(models.Model):
         return self.name
     
     @property
-    def get_avg_time(self):
-        return self.price 
+    def price_after_sale(self):
+        num = float(self.price) * 0.8
+        return int(num)
 
 class Category(models.Model):
     name = models.CharField( max_length=100, default='default_ctg')

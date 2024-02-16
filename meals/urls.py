@@ -5,4 +5,5 @@ from . import api
 urlpatterns = [
     path('list/', api.MealMixinAPI.as_view()),
     path('<int:pk>/', api.MealMixinAPI.as_view()),
+    path('create/', api.MealMixinAPI.as_view()),
 ]

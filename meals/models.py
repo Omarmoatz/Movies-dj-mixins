@@ -6,7 +6,7 @@ class Meal(models.Model):
     price = models.DecimalField( max_digits=6, decimal_places=2, default=99.99)
     category = models.ForeignKey('Category', related_name='ctg_meal', on_delete=models.CASCADE)
     preperation_time = models.TimeField( auto_now=True)
-    image = models.ImageField( upload_to='meals',blank=True, null=True)
+    image = models.ImageField( upload_to='meals/',blank=True, null=True)
     people = models.PositiveIntegerField(default=1)
 
     class Meta:

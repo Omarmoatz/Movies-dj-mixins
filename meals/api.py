@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics,mixins
+from rest_framework import generics,mixins,permissions,authentication
 
 from .models import Meal
 from .serializers import MealSerializer
@@ -11,6 +11,8 @@ class MealMixinAPI(mixins.ListModelMixin,
                    generics.GenericAPIView):
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.DjangoModelPermissions]
 
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')

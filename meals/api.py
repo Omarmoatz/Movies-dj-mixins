@@ -3,6 +3,7 @@ from rest_framework import generics,mixins,permissions,authentication
 
 from .models import Meal
 from .serializers import MealSerializer
+from .permissions import IsStaffEditorPermission
 
 class MealMixinAPI(mixins.ListModelMixin,
                    mixins.RetrieveModelMixin,
@@ -12,7 +13,7 @@ class MealMixinAPI(mixins.ListModelMixin,
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
     authentication_classes = [authentication.SessionAuthentication]
-    permission_classes = [permissions.DjangoModelPermissions]
+    permission_classes = [IsStaffEditorPermission]
 
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')

@@ -8,12 +8,13 @@ from .permissions import IsStaffEditorPermission
 class MealMixinAPI(mixins.ListModelMixin,
                    mixins.RetrieveModelMixin,
                    mixins.CreateModelMixin,
+                   mixins.UpdateModelMixin,
                    mixins.DestroyModelMixin,
                    generics.GenericAPIView):
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
-    authentication_classes = [authentication.SessionAuthentication]
-    permission_classes = [IsStaffEditorPermission]
+    # authentication_classes = [authentication.SessionAuthentication]
+    # permission_classes = [IsStaffEditorPermission]
 
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
@@ -32,6 +33,9 @@ class MealMixinAPI(mixins.ListModelMixin,
             description = "test perform create"
 
         serializer.save(description=description)
+    
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)

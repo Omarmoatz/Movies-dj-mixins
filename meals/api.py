@@ -13,8 +13,8 @@ class MealMixinAPI(mixins.ListModelMixin,
                    generics.GenericAPIView):
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
-    # authentication_classes = [authentication.SessionAuthentication]
-    # permission_classes = [IsStaffEditorPermission]
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAdminUser,IsStaffEditorPermission]
 
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')

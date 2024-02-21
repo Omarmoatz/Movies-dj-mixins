@@ -36,6 +36,16 @@ class MealMixinAPI(mixins.ListModelMixin,
     
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+    
+    def perform_update(self, serializer):
+        description = serializer.validated_data['description']
+        name = serializer.validated_data['name']
+
+        if description == None:
+            description = "test perform update"
+
+        serializer.save(description=description)
+        
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)

@@ -13,9 +13,6 @@ class MealMixinAPI(mixins.ListModelMixin,
                    generics.GenericAPIView):
     queryset = Meal.objects.all()
     serializer_class = MealSerializer
-    authentication_classes = [
-        authentication.SessionAuthentication,
-        authentication.TokenAuthentication]
     permission_classes = [
         permissions.IsAdminUser,
         IsStaffEditorPermission]
